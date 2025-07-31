@@ -1,6 +1,6 @@
 # VivaPlus Project
 
-Este é um projeto Java de exemplo que utiliza Maven para gerenciamento de dependências e build. O projeto implementa operações de CRUD para gerenciamento de produtos (no caso, medicamentos) usando JDBC para interagir com o banco de dados.
+Este é um projeto em Java de exemplo que utiliza Maven para gerenciamento de dependências e build. O projeto implementa operações de CRUD para gerenciamento de produtos (no caso, medicamentos) usando JDBC para interagir com o banco de dados.
 
 ## Tecnologias Utilizadas
 
