@@ -1,105 +1,183 @@
-# VivaPlus Project
+# VivaPlus - Sistema de Gestão Farmacêutica
 
-Este é um projeto em Java de exemplo que utiliza Maven para gerenciamento de dependências e build. O projeto implementa operações de CRUD para gerenciamento de produtos (no caso, medicamentos) usando JDBC para interagir com o banco de dados.
+## 📋 Descrição
 
-## Tecnologias Utilizadas
+O **VivaPlus** é um sistema de gestão farmacêutica desenvolvido em Java com interface gráfica Swing. O sistema permite o gerenciamento de produtos farmacêuticos, controle de usuários com diferentes níveis de acesso e operações de catálogo de medicamentos.
 
-- **Java** – Linguagem de programação principal.
-- **Maven** – Gerenciamento de dependências e build.
-- **JDBC** – Conexão com o banco de dados.
-- **JUnit** – Execução de testes unitários (se aplicável).
+## 🚀 Funcionalidades
 
-## Organização do Projeto
+### 👥 Gestão de Usuários
+- **Sistema de Login**: Autenticação segura com CIP e senha
+- **Múltiplos Níveis de Acesso**:
+  - **ADMIN**: Acesso completo ao sistema
+  - **MANAGER**: Gestão de produtos e relatórios
+  - **EDITOR**: Edição de produtos
+  - **BASIC**: Visualização básica
 
-- `src/main/java` – Contém o código-fonte da aplicação, incluindo DAOs, models, enumeradores e outras classes de lógica de negócio.
-- `src/test/java` – Contém os testes unitários para as classes do projeto.
+### 💊 Gestão de Produtos Farmacêuticos
+- Cadastro de medicamentos com informações completas:
+  - Nome do produto
+  - Quantidade em estoque
+  - Preço
+  - Tipo de prescrição (Com prescrição / Sem prescrição)
+  - Lote
+  - Data de validade
+  - Controle de modificações
 
-## Estrutura de Pacotes Importantes
+### 📊 Catálogo de Produtos
+- Visualização organizada de todos os produtos
+- Filtros e busca por produtos
+- Interface intuitiva para navegação
 
-- `org.vivaplus.model.dao` – Contém o `DrugDAO` para operações de acesso aos dados.
-- `org.vivaplus.model.enums` – Contém os enumeradores, como `Prescription` e possivelmente outros que representem estados ou configurações.
-- `org.vivaplus.model.bean` – Contém as classes de modelo (como `Drug` e `User`) que representam os dados da aplicação.
+## 🛠️ Tecnologias Utilizadas
 
-## Funcionalidades Principais
+- **Java 21**: Linguagem principal
+- **Swing**: Interface gráfica
+- **MySQL**: Banco de dados
+- **Maven**: Gerenciamento de dependências
+- **FlatLaf**: Biblioteca para interface moderna
+- **Cucumber**: Testes de comportamento (BDD)
+- **JUnit**: Framework de testes unitários
 
-- **CRUD de Produtos:** Criação, leitura, atualização e remoção de registros de produtos.
-- **Integração com Banco de Dados:** Uso de conexões JDBC para persistência e recuperação dos dados.
-- **Enumerações para Controle:** Uso de enumeradores, como o `Prescription`, para padronizar valores.
+## 📦 Dependências Principais
 
-## Configuração e Execução
+```xml
+- MySQL Connector Java 8.0.33
+- FlatLaf 3.1.1 (Interface moderna)
+- Cucumber Java 7.14.0 (Testes BDD)
+- JUnit 4.13.2 (Testes unitários)
+- SVG Salamander 1.1.4 (Suporte a SVG)
+```
 
-1. **Clonar o Repositório:**  
-   Clone o repositório em sua máquina.
+## 🏗️ Estrutura do Projeto
 
-2. **Build com Maven:**  
-   Navegue até a raiz do projeto e execute:
-   ```shell
-   mvn clean install
+```
+VivaPlus/
+├── src/
+│   ├── main/java/org/vivaplus/
+│   │   ├── database/
+│   │   │   └── DatabaseConnection.java
+│   │   ├── model/
+│   │   │   ├── bean/
+│   │   │   │   ├── Drug.java
+│   │   │   │   └── User.java
+│   │   │   ├── dao/
+│   │   │   │   ├── DrugDAO.java
+│   │   │   │   ├── LoginDAO.java
+│   │   │   │   └── UserDAO.java
+│   │   │   └── enums/
+│   │   │       ├── Prescription.java
+│   │   │       └── Roles.java
+│   │   └── view/
+│   │       ├── catalog/
+│   │       ├── dashboard/
+│   │       └── LoginScreen.java
+│   └── test/
+│       ├── java/
+│       │   └── steps/
+│       └── resources/
+│           └── features/
+└── pom.xml
+```
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+- Java 21 ou superior
+- Maven 3.6+
+- MySQL 8.0+
+
+### Instalação
+
+1. **Clone o repositório**
+   ```bash
+   git clone [URL_DO_REPOSITORIO]
+   cd VivaPlus
+   ```
+
+2. **Configure o banco de dados**
+   - Crie um banco MySQL
+   - Configure as credenciais em `DatabaseConnection.java`
+
+3. **Compile o projeto**
+   ```bash
+   mvn clean compile
+   ```
+
+4. **Execute a aplicação**
+   ```bash
+   mvn exec:java -Dexec.mainClass="org.vivaplus.Main"
+   ```
+
+## 🧪 Testes
+
+### Testes Unitários
+```bash
+mvn test
+```
+
+### Testes de Comportamento (BDD)
+O projeto inclui testes Cucumber para cenários de:
+- Login de usuários
+- Registro de novos usuários
+- Gestão de catálogo
+- Atualização de produtos
+- Mudança de roles
+
+## 📱 Telas do Sistema
+
+### Tela de Login
+- Interface moderna com design FlatLaf
+- Autenticação por CIP e senha
+- Validação de credenciais
+
+### Dashboard Administrativo
+- Visão geral do sistema
+- Controles de gestão
+- Relatórios e estatísticas
+
+### Catálogo de Produtos
+- Listagem organizada de medicamentos
+- Filtros e busca
+- Interface responsiva
+
+## 🔐 Segurança
+
+- Autenticação baseada em roles
+- Controle de acesso por nível de usuário
+- Validação de dados de entrada
+- Logs de modificações
+
+## 📈 Funcionalidades Futuras
+
+- [ ] Relatórios avançados
+- [ ] Integração com sistemas externos
+- [ ] Backup automático
+- [ ] Notificações de produtos vencendo
+- [ ] API REST para integração
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+## 👨‍💻 Desenvolvedor
+
+**João Rodrigues**
+
 ---
-## Banco de Dados - Script SQL
 
-```sql
--- Cria o banco de dados
-CREATE DATABASE mydb;
+## 📞 Suporte
 
--- Usa o banco criado
-USE mydb;
+Para dúvidas ou suporte, entre em contato através dos canais disponibilizados no projeto.
 
--- Cria a tabela users com a coluna cip de 8 dígitos única
-CREATE TABLE users (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    cip VARCHAR(8) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role ENUM('BASIC','ADMIN','MANAGER') DEFAULT 'BASIC',
-    PRIMARY KEY (id)
-);
+---
 
--- Cria a tabela products com a coluna last_modified_by como chave estrangeira
-CREATE TABLE products (
-    product_id INT NOT NULL AUTO_INCREMENT,
-    product_name VARCHAR(100) NOT NULL,
-    product_quantity INT NOT NULL,
-    product_price DECIMAL(10,2) NOT NULL,
-    product_prescription ENUM('YES', 'NO') NOT NULL,
-    product_batch VARCHAR(12) NOT NULL,
-    product_batch_expiration DATE,
-    last_modified_by INT,
-    PRIMARY KEY (product_id),
-    FOREIGN KEY (last_modified_by) REFERENCES users(id)
-);
-
--- Insere usuários com cip de 8 dígitos
-INSERT INTO users (name, cip, password, role)
-VALUES
-    ('Felipe Couto', '80900001', '123', 'BASIC');
-
--- Insere produtos (ainda sem modificador, pode ser NULL inicialmente)
-INSERT INTO products (
-    product_name,
-    product_quantity,
-    product_price,
-    product_prescription,
-    product_batch,
-    product_batch_expiration
-)
-VALUES
-    ('Paracetamol 500mg', 100, 5.99, 'NO', 'LoteP001', '2026-12-31');
-
--- Consulta para verificar os dados, incluindo quem modificou
-SELECT
-    p.product_id,
-    p.product_name,
-    p.product_quantity,
-    p.product_price,
-    p.product_prescription,
-    p.product_batch,
-    p.product_batch_expiration,
-    u.name AS last_modified_by
-FROM products p
-LEFT JOIN users u ON p.last_modified_by = u.id;
-
--- Consulta de todos os usuários
-SELECT * FROM users;
-
-    
+*VivaPlus - Sistema de Gestão Farmacêutica* 🏥💊 
